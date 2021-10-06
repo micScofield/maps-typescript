@@ -1,3 +1,8 @@
+interface Location {
+    lat: number
+    lng: number
+}
+
 export class CustomMap {
     private googleMap: google.maps.Map
 
@@ -9,5 +14,12 @@ export class CustomMap {
                 lng: 0
             }
         })        
+    }
+
+    addMarker(location: Location): void {
+        new google.maps.Marker({
+            map: this.googleMap,
+            position: location
+        })
     }
 }
