@@ -11,5 +11,6 @@ const company = new Company()
 
 const customMap = new CustomMap('map') // instantiates a new google map instance with predefined options for us and links with a div with an id of "map"
 
+
 customMap.addMarker(user.location)
 customMap.addMarker(company.location)

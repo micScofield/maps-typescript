@@ -17,9 +17,17 @@ export class CustomMap {
     }
 
     addMarker(location: Location): void {
-        new google.maps.Marker({
+        const marker = new google.maps.Marker({
             map: this.googleMap,
             position: location
+        })
+
+        marker.addListener('click', () => {
+            const infoWindow = new google.maps.InfoWindow({
+                content: 'This is a demonstration of info window popup on clicking the marker !'
+            })
+
+            infoWindow.open(this.googleMap, marker)
         })
     }
 }

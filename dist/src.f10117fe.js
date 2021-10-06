@@ -136918,9 +136918,17 @@ var CustomMap = function () {
   }
 
   CustomMap.prototype.addMarker = function (location) {
-    new google.maps.Marker({
+    var _this = this;
+
+    var marker = new google.maps.Marker({
       map: this.googleMap,
       position: location
+    });
+    marker.addListener('click', function () {
+      var infoWindow = new google.maps.InfoWindow({
+        content: 'This is a demonstration of info window popup on clicking the marker !'
+      });
+      infoWindow.open(_this.googleMap, marker);
     });
   };
 
@@ -137004,7 +137012,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49250" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49626" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
