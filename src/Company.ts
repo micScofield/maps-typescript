@@ -2,6 +2,8 @@ import faker from 'faker'
 
 import { Mappable } from './CustomMap'
 
+// this is a better way to catch errors by using implements clause. This will help us write class in a structured way where we know that we have to implement functionality for some interface.
+
 export class Company implements Mappable {
     companyName: string
     catchPhrase: string

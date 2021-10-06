@@ -136882,7 +136882,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.Company = void 0;
 
-var faker_1 = __importDefault(require("faker"));
+var faker_1 = __importDefault(require("faker")); // this is a better way to catch errors by using implements clause. This will help us write class in a structured way where we know that we have to implement functionality for some interface.
+
 
 var Company = function () {
   function Company() {
@@ -136991,9 +136992,11 @@ var user = new User_1.User();
 var company = new Company_1.Company();
 var customMap = new CustomMap_1.CustomMap('map'); // instantiates a new google map instance with predefined options for us and links with a div with an id of "map"
 
-customMap.addMarker(user);
-customMap.addMarker(company); // customMap.addMarker({ location: company.location, markerContent: company.markerContent() })
-// since we expect the passed value to match with some interface defined in the CustomMap.ts, we can pass in above two manners
+customMap.addMarker({
+  location: user.location,
+  markerContent: user.markerContent
+});
+customMap.addMarker(company); // Two ways - Pass entire user object: the function on other end will use the properties it needs OR pass only required properties from user / company object. These classes are implementing the Mappable Interface, so passing entire object will not cause any errors.
 },{"./Company":"src/Company.ts","./CustomMap":"src/CustomMap.ts","./User":"src/User.ts"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
