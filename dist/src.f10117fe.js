@@ -136894,6 +136894,10 @@ var Company = function () {
     };
   }
 
+  Company.prototype.markerContent = function () {
+    return "This is marker for company - <strong>" + this.companyName + "</strong>, " + this.catchPhrase;
+  };
+
   return Company;
 }();
 
@@ -136917,16 +136921,18 @@ var CustomMap = function () {
     });
   }
 
-  CustomMap.prototype.addMarker = function (location) {
+  CustomMap.prototype.addMarker = function (_a) {
     var _this = this;
 
+    var markerContent = _a.markerContent,
+        location = _a.location;
     var marker = new google.maps.Marker({
       map: this.googleMap,
       position: location
     });
     marker.addListener('click', function () {
       var infoWindow = new google.maps.InfoWindow({
-        content: 'This is a demonstration of info window popup on clicking the marker !'
+        content: markerContent
       });
       infoWindow.open(_this.googleMap, marker);
     });
@@ -136961,6 +136967,10 @@ var User = function () {
     };
   }
 
+  User.prototype.markerContent = function () {
+    return "This is marker for user - " + this.name;
+  };
+
   return User;
 }();
 
@@ -136982,8 +136992,14 @@ var user = new User_1.User();
 var company = new Company_1.Company();
 var customMap = new CustomMap_1.CustomMap('map'); // instantiates a new google map instance with predefined options for us and links with a div with an id of "map"
 
-customMap.addMarker(user.location);
-customMap.addMarker(company.location);
+customMap.addMarker({
+  location: user.location,
+  markerContent: user.markerContent()
+});
+customMap.addMarker({
+  location: company.location,
+  markerContent: company.markerContent()
+});
 },{"./Company":"src/Company.ts","./CustomMap":"src/CustomMap.ts","./User":"src/User.ts"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
