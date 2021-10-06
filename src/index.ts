@@ -11,6 +11,7 @@ const company = new Company()
 
 const customMap = new CustomMap('map') // instantiates a new google map instance with predefined options for us and links with a div with an id of "map"
 
-
-customMap.addMarker({ location: user.location, markerContent: user.markerContent() })
-customMap.addMarker({ location: company.location, markerContent: company.markerContent() })
+customMap.addMarker(user)
+customMap.addMarker(company)
+// customMap.addMarker({ location: company.location, markerContent: company.markerContent() })
+// since we expect the passed value to match with some interface defined in the CustomMap.ts, we can pass in above two manners

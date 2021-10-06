@@ -136921,18 +136921,16 @@ var CustomMap = function () {
     });
   }
 
-  CustomMap.prototype.addMarker = function (_a) {
+  CustomMap.prototype.addMarker = function (mappable) {
     var _this = this;
 
-    var markerContent = _a.markerContent,
-        location = _a.location;
     var marker = new google.maps.Marker({
       map: this.googleMap,
-      position: location
+      position: mappable.location
     });
     marker.addListener('click', function () {
       var infoWindow = new google.maps.InfoWindow({
-        content: markerContent
+        content: mappable.markerContent()
       });
       infoWindow.open(_this.googleMap, marker);
     });
@@ -136956,7 +136954,8 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.User = void 0;
 
-var faker_1 = __importDefault(require("faker"));
+var faker_1 = __importDefault(require("faker")); // this is a better way to catch errors by using implements clause. This will help us write class in a structured way where we know that we have to implement functionality for some interface.
+
 
 var User = function () {
   function User() {
@@ -136992,14 +136991,9 @@ var user = new User_1.User();
 var company = new Company_1.Company();
 var customMap = new CustomMap_1.CustomMap('map'); // instantiates a new google map instance with predefined options for us and links with a div with an id of "map"
 
-customMap.addMarker({
-  location: user.location,
-  markerContent: user.markerContent()
-});
-customMap.addMarker({
-  location: company.location,
-  markerContent: company.markerContent()
-});
+customMap.addMarker(user);
+customMap.addMarker(company); // customMap.addMarker({ location: company.location, markerContent: company.markerContent() })
+// since we expect the passed value to match with some interface defined in the CustomMap.ts, we can pass in above two manners
 },{"./Company":"src/Company.ts","./CustomMap":"src/CustomMap.ts","./User":"src/User.ts"}],"../../../../../usr/local/lib/node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
